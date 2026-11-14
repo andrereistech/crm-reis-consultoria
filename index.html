@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reis Consultoria</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#111827;--mu:#6b7280;--bd:#e5e7eb;--ac:#4f46e5;--ac2:#eef2ff;--ok:#059669;--wa:#16a34a;--bad:#dc2626;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--card:#181b22;--tx:#f3f4f6;--mu:#9ca3af;--bd:#2a2f3a;--ac:#818cf8;--ac2:#1e2140;--ok:#34d399;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1115;--card:#181b22;--tx:#f3f4f6;--mu:#9ca3af;--bd:#2a2f3a;--ac:#818cf8;--ac2:#1e2140;--ok:#34d399;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--card);border-bottom:1px solid var(--bd)}
+h1{font-size:18px;margin:0;display:flex;align-items:center;gap:10px}.logo{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #c9a24a;flex:none}
+.chip{font-size:12px;background:var(--ac2);color:var(--ac);padding:2px 10px;border-radius:99px;margin-left:8px;font-weight:600}
+nav{display:flex;gap:4px;padding:10px 20px 0}
+nav button{background:none;border:0;padding:8px 14px;border-radius:8px;color:var(--mu);font:inherit;font-weight:600;cursor:pointer}
+nav button.on{background:var(--ac2);color:var(--ac)}
+main{padding:16px 20px 40px}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:9px 16px;font:inherit;font-weight:600;cursor:pointer}
+.btn.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:12px;align-items:stretch;overflow-x:auto;padding-bottom:8px}
+.col{min-width:0;display:flex;flex-direction:column;height:calc(100vh - 230px);min-height:480px;background:#0b1226;border:1px solid #1b2542;border-radius:12px;color:#e5e7eb}
+.ch{padding:12px 14px 10px;border-bottom:1px solid #1b2542}.ct{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.ct i{width:8px;height:8px;border-radius:50%;display:inline-block}.plus{margin-left:auto;background:none;border:0;color:#94a3b8;font-size:20px;line-height:1;cursor:pointer}
+.cs{color:#64748b;font-size:11px;margin-top:2px}.cb{padding:10px;overflow-y:auto;flex:1}
+.col .card{background:#101a35;border:1px solid #1f2b4d;color:#e5e7eb;box-shadow:none}.col .card.td{border-top:4px solid #3d5290}
+.col .mu{color:#8b97b5}.col dt{color:#7c89a8}.col dd{color:#dbe4ff}.col .ok{color:#34d399}.col .prop{background:#18244a;color:#dbe4ff}
+.seg{display:flex;gap:4px;margin-bottom:8px}.seg u{flex:1;height:3px;border-radius:2px;background:#26335a}.seg u.on{background:#fbbf24}.seg u.bad{background:#ef4444}
+.top{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.age{margin-left:auto;font-size:11px;font-weight:700;color:#fbbf24;border:1px solid #6b4e12;background:#2a2108;padding:1px 7px;border-radius:6px}
+.chip2{font-size:11px;font-weight:600;color:#aab4d0;border:1px solid #2a3760;background:#17213f;padding:1px 7px;border-radius:6px;margin-bottom:6px}
+.nm{font-weight:700;margin:2px 0}.val{color:#34d399;font-weight:700;font-size:14px}
+.col .card{padding:8px 10px;margin-bottom:8px;font-size:13px}.sm2{font-size:12px;line-height:1.35}.dts{font-size:11px;color:#6f7ca0;margin-top:4px}
+.col .prop{padding:4px 6px;font-size:12px;margin:4px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.top .val{margin-left:auto;font-size:13px}a.wa.sm{padding:3px 8px;font-size:11px;margin-top:6px}.seg{margin-bottom:6px}
+.col.over{border-color:#3b82f6}
+.col h3{margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--bd);font-size:13px;display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:.04em;color:var(--mu)}
+.card{overflow-wrap:anywhere;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.col .card{cursor:pointer}.card[draggable=true]{cursor:grab}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;margin-bottom:6px}
+.tag.go21{background:#1d4ed8;color:#fb923c}.tag.fac{background:#16a34a;color:#fff}.tag.td{background:#14295a;color:#f6f1e3}
+.card.go21{border-top:4px solid #1d4ed8}.card.fac{border-top:4px solid #16a34a}.card.td{border-top:4px solid #14295a}
+.mu{color:var(--mu);font-size:13px}.ok{color:var(--ok);font-weight:600;font-size:13px}
+dl{margin:8px 0;display:grid;gap:2px}dl div{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+dt{color:var(--mu)}dd{margin:0;text-align:right}
+.prop{background:var(--ac2);border-radius:8px;padding:6px 8px;font-size:13px;margin:6px 0}
+a.wa{display:inline-block;margin-top:8px;background:var(--wa);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:6px 12px;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.kpi b{display:block;font-size:24px}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;max-width:720px;margin-bottom:16px}
+.bar{display:grid;grid-template-columns:150px 1fr 36px;gap:10px;align-items:center;margin:10px 0;font-size:14px}
+.bar i{display:block;height:14px;border-radius:7px;background:var(--ac);min-width:4px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--bd);white-space:nowrap}
+th{color:var(--mu);font-size:12px;text-transform:uppercase}
+#m{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+#m.on{display:flex}
+.mb{background:var(--card);border-radius:16px;padding:20px;width:100%;max-width:460px;max-height:90vh;overflow:auto}
+.mb h2{margin:0 0 12px;font-size:17px}
+label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+.chk{display:flex;flex-wrap:wrap;gap:6px}.chk label{display:flex;align-items:center;gap:6px;font-weight:500;margin:0;border:1px solid var(--bd);border-radius:8px;padding:6px 10px}
+.chk input{width:auto}
+.row{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.pk{border:1px solid var(--bd);border-radius:8px;padding:6px 10px;margin:6px 0;cursor:pointer}.pk.on{border-color:var(--ac);background:var(--ac2)}.sm{padding:4px 10px;font-size:12px;margin:8px 4px 0 0}.hide{display:none}.err{color:var(--bad);font-size:13px;margin-top:8px}
+
+#login{position:fixed;inset:0;background:var(--bg);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+#login.show{display:flex}.lbox{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:26px;width:100%;max-width:380px;text-align:center}
+.lbox h2{margin:10px 0 14px}.lbox .logo{width:96px;height:96px}.lbox form{text-align:left}.lbox .btn{width:100%;margin-top:14px}
+.ltabs{display:flex;gap:6px;margin-bottom:6px}.ltabs button{flex:1;padding:8px;border:1px solid var(--bd);background:none;border-radius:10px;color:var(--mu);font:inherit;font-weight:600;cursor:pointer}
+.ltabs button.on{background:var(--ac2);color:var(--ac);border-color:var(--ac)}
+#out{margin-left:8px}
+</style></head><body>
+<div id="login"><div class="lbox"><img class="logo" alt="Reis Consultoria" src="data:image/jpeg;base64,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"><h2>Reis Consultoria</h2>
+<div class="ltabs"><button id="tv" class="on" type="button">Sou vendedor</button><button id="tc" type="button">Sou consultor</button></div>
+<form id="fv"><label>Telefone</label><input name="t" type="tel" inputmode="tel" required><label>Código de acesso</label><input name="c" autocomplete="off" style="text-transform:uppercase" placeholder="XXXX-XXXX" required><button class="btn">Entrar</button></form>
+<form id="fc" class="hide"><label>E-mail</label><input name="e" type="email" required><label>Senha</label><input name="p" type="password" required><button class="btn">Entrar</button></form>
+<div class="err" id="le"></div></div></div>
+<header><h1><img class="logo" alt="Reis Consultoria" src="data:image/jpeg;base64,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">Reis Consultoria<span class="chip" id="role"></span></h1><div id="act"></div></header>
+<nav id="nav"></nav><main id="app">Carregando…</main>
+<div id="m"><div class="mb" id="mb"></div></div>
+<script>window.claude={use:n=>window.__fbReady.then(()=>window.__fb[n])};window.__fbReady=new Promise(r=>window.__fbResolve=r);</script>
+<script>
+const $=s=>document.querySelector(s);
+const E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const R=n=>(+n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const ST=[['novo','Indicado'],['orc','Cotação enviada'],['fech','Pedido fechado'],['pago','Comissão paga'],['perd','Perdido']];
+const CO={go21:'21 Go',fac:'Facility',td:'TD Lajes'},OTH={go21:'fac',fac:'go21'};
+const PRODS=['Laje pré-moldada','Concreto','Escoras','Malha POP'];
+const DEF={whatsapp:'',com:{go21:{t:'fixo',v:50},fac:{t:'fixo',v:50},td:{t:'pct',v:3}}};
+let cads={},U,db,admin=false,myId,mine=null,cfg=DEF,sellers={},leads={},stat={},tab='kanban',fsel='',subbed={};
+
+function modal(h){$('#mb').innerHTML=h;$('#m').classList.add('on')}
+function closeM(){$('#m').classList.remove('on')}
+$('#m').addEventListener('mousedown',e=>{if(e.target.id==='m')closeM()});
+
+(async()=>{
+  const user=window.claude&&await claude.use('user');db=window.claude&&await claude.use('db');
+  if(!user||!db){$('#app').textContent='Abra pelo link compartilhado e entre com a sua conta.';return}
+  U=user;myId=await user.id();admin=await user.canEdit();
+  const me=await user.me();
+  $('#role').textContent=admin?'Consultor':'Vendedor';if(!admin)tab='novo';
+  db.doc('config/settings').onSnapshot(s=>{if(s.exists)cfg={...DEF,...s.data()};render()},()=>{});
+  if(admin){
+    db.collection('sellers').onSnapshot(s=>{sellers={};s.docs.forEach(d=>{sellers[d.id]=d.data();sub(d.id)});render()},()=>{});
+    sub(myId);db.collection('cadastros').onSnapshot(s=>{cads={};s.docs.forEach(d=>cads[d.id]=d.data());render()},()=>{});
+  }else{
+    sub(myId);
+    db.doc('sellers/'+myId).onSnapshot(s=>{
+      mine=s.exists?s.data():null;
+      if(!mine)profileForm(me.name);
+      render()},()=>{});
+  }
+  render();
+})();
+
+function sub(uid){
+  if(subbed[uid])return;subbed[uid]=1;
+  const load=(map,pre)=>s=>{for(const k in map)if(k.startsWith(uid+'/'))delete map[k];
+    s.docs.forEach(d=>map[uid+'/'+d.id]=pre?{...d.data(),id:d.id,uid}:d.data());render()};
+  db.collection(`leads/${uid}/items`).onSnapshot(load(leads,1),()=>{});
+  db.collection(`status/${uid}/items`).onSnapshot(load(stat,0),()=>{});
+}
+
+function profileForm(n){
+  modal(`<h2>Complete seu cadastro</h2><form id="pf"><label>Nome</label><input name="n" value="${E(n)}" required>
+  <label>Telefone (WhatsApp)</label><input name="t" type="tel" required><div class="row"><button class="btn">Salvar</button></div></form>`);
+  $('#pf').onsubmit=async e=>{e.preventDefault();const f=e.target;
+    await db.doc('sellers/'+myId).set({name:f.n.value.trim(),tel:f.t.value.trim(),at:Date.now()});closeM()};
+}
+
+const sOf=l=>(stat[l.uid+'/'+l.id]||{}).st||'novo';
+const vis=()=>Object.values(leads).filter(l=>!fsel||l.uid===fsel).sort((a,b)=>b.at-a.at);
+function com(l){if(admin&&l.uid===myId)return 0;
+  const s=stat[l.uid+'/'+l.id]||{};if(!['fech','pago'].includes(s.st))return 0;
+  const c=(cfg.com?.[l.company]||DEF.com[l.company])||{t:'fixo',v:0};return c.t==='fixo'?+c.v:(+s.valor||0)*(+c.v)/100}
+function wa(l){
+  const t=['Chegou indicação do Vendedor '+l.seller,'Empresa: '+CO[l.company],'Cliente: '+l.nome,'Telefone: '+l.tel];
+  if(l.company!=='td')t.push('Placa: '+l.placa,'Município: '+l.mun,'Usa em aplicativo: '+(l.app?'Sim':'Não'));
+  else t.push('Bairro: '+l.bairro,'Produtos: '+(l.prods||[]).join(', '),'Obra: '+l.m2+' m²','Caminhão para a '+l.dist+' m da obra');
+  let n=(cfg.whatsapp||'').replace(/\D/g,'');if(n&&n.length<=11)n='55'+n;
+  return `https://wa.me/${n}?text=${encodeURIComponent(t.join('\n'))}`}
+
+function render(){
+  if(!db)return;
+  $('#act').innerHTML=admin?`<select id="fs" onchange="fsel=this.value;render()" style="width:auto"><option value="">Todos os vendedores</option>${Object.entries(sellers).map(([k,v])=>`<option value="${k}" ${k===fsel?'selected':''}>${E(v.name)}</option>`).join('')}</select>`
+    :`<button class="btn" onclick="${mine?"tab='novo';render()":'profileForm()'}">${mine?'+ Nova indicação':'Informar código de acesso'}</button>`;
+  const tabs=[['novo','Cadastrar cliente']].concat([['kanban','Kanban'],['painel','Painel']]).concat(admin?[['vend','Vendedores'],['cfg','Configurações']]:[]);
+  $('#nav').innerHTML=tabs.map(t=>`<button class="${tab===t[0]?'on':''}" onclick="tab='${t[0]}';render()">${t[1]}</button>`).join('');
+  $('#app').innerHTML={novo,kanban,painel,vend,cfg:cfgv}[tab]();
+}
+
+function card(l){
+  const k=l.uid+'/'+l.id,s=stat[k]||{},fac=l.company!=='td',c=com(l),can=admin||!s.st||s.st==='novo';
+  const rows=fac?[['Placa',l.placa],['Município',l.mun],['Aplicativo',l.app?'Sim':'Não']]
+    :[['Bairro',l.bairro],['Produtos',(l.prods||[]).join(', ')],['Obra',l.m2+' m²'],['Caminhão para a',l.dist+' m']];
+  return `<div class="card ${l.company}" ${admin?'draggable="true"':''} data-k="${E(k)}">
+  <span class="tag ${l.company}">${CO[l.company]}</span><div><b>${E(l.nome)}</b></div>
+  <div class="mu">${E(l.tel)}${admin?' · '+E(l.seller):''}</div>
+  <dl>${rows.map(r=>`<div><dt>${r[0]}</dt><dd>${E(r[1])}</dd></div>`).join('')}</dl>
+  ${s.prop?`<div class="prop"><b>Cotação do consultor</b><br>${E(s.prop)}</div>`:''}
+  ${s.valor?`<div class="mu">Pedido: ${R(s.valor)}</div>`:''}${c?`<div class="ok">Comissão: ${R(c)}</div>`:''}
+  <a class="wa" href="${wa(l)}" target="_blank" rel="noopener">Enviar para o consultor</a>${l.company!=='td'?`<button class="btn g sm" data-k="${E(k)}" onclick="dup(this.dataset.k)">Duplicar para ${CO[OTH[l.company]]}</button>`:''}${can?`<div><button class="btn g sm" data-k="${E(k)}" onclick="leadForm(this.dataset.k)">Editar dados</button><button class="btn g sm" data-k="${E(k)}" onclick="lDel(this.dataset.k)">Excluir</button></div>`:''}</div>`}
+
+function novo(){
+  if(!mine&&!admin)return `<div class="box"><h3 style="margin-top:0">Informe seu código de acesso</h3><p class="mu">Digite o código que você recebeu para começar a cadastrar clientes.</p><button class="btn" onclick="profileForm()">Informar código</button></div>`;
+  return `<h2 style="margin:0 0 4px">Cadastrar novo cliente</h2><p class="mu" style="margin-top:0">Escolha o tipo de serviço, preencha os dados e envie para o meu WhatsApp. Depois acompanhe o andamento na aba Kanban.</p>
+  <div class="grid" style="max-width:720px"><div class="kpi"><span class="tag fac">Proteção veicular</span><b style="font-size:18px">Facility. 21 Go</b><p class="mu">Nome, telefone, placa, município e uso em aplicativo.</p><button class="btn" onclick="leadForm(null,'fac')">Cadastrar cliente</button></div>
+  <div class="kpi"><span class="tag td">Construção civil</span><b style="font-size:18px">TD Lajes</b><p class="mu">Nome, telefone, bairro, produtos, metragem e distância do caminhão.</p><button class="btn" onclick="leadForm(null,'td')">Cadastrar cliente</button></div></div>`}
+function kanban(){
+  const L=vis();
+  if(!L.length&&!admin)return '<p class="mu">Nenhuma indicação ainda. Clique em “+ Nova indicação” para começar.</p>';
+  return `${admin?'':'<p class="mu" style="margin-top:0">Aqui você acompanha suas indicações. O consultor atualiza o status e envia a cotação para você.</p>'}<div class="board">${ST.map(([id,nm])=>{const x=L.filter(l=>sOf(l)===id);
+    return `<div class="col" data-st="${id}"><h3><span>${nm}</span><span>${x.length}</span></h3>${x.map(card).join('')}</div>`}).join('')}</div>`}
+
+function painel(){
+  const L=vis(),n=L.length,o=L.filter(l=>['orc','fech','pago'].includes(sOf(l))).length,f=L.filter(l=>['fech','pago'].includes(sOf(l))).length;
+  const rec=L.filter(l=>sOf(l)==='fech').reduce((a,l)=>a+com(l),0),pg=L.filter(l=>sOf(l)==='pago').reduce((a,l)=>a+com(l),0);
+  const bar=(t,v)=>`<div class="bar"><span>${t}</span><i style="width:${n?v/n*100:0}%"></i><b>${v}</b></div>`;
+  return `<div class="grid"><div class="kpi"><span class="mu">Indicações</span><b>${n}</b></div>
+  <div class="kpi"><span class="mu">Pedidos fechados</span><b>${f}</b></div>
+  <div class="kpi"><span class="mu">Comissão a receber</span><b>${R(rec)}</b></div>
+  <div class="kpi"><span class="mu">Comissão paga</span><b>${R(pg)}</b></div></div>
+  <div class="box"><h3 style="margin-top:0">Funil de indicações</h3>${bar('Indicações feitas',n)}${bar('Cotações enviadas',o)}${bar('Pedidos fechados',f)}</div>`}
+
+function vend(){
+  const rows=Object.entries(sellers).map(([k,v])=>{const L=Object.values(leads).filter(l=>l.uid===k);
+    const c=L.reduce((a,l)=>a+com(l),0);
+    return `<tr><td>${E(v.name)}</td><td>${E(v.tel)}</td><td>${L.length}</td><td>${L.filter(l=>['fech','pago'].includes(sOf(l))).length}</td><td>${R(c)}</td><td><button class="btn g" data-k="${E(k)}" onclick="sForm(this.dataset.k)">Editar</button> <button class="btn g" data-k="${E(k)}" onclick="sDel(this.dataset.k)">Remover</button></td></tr>`}).join('');
+  return `<div class="box" style="max-width:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">Divulgadores cadastrados</h3><button class="btn" onclick="sForm()">+ Cadastrar divulgador</button></div>
+  <div class="tw"><table><tr><th>Nome</th><th>Telefone</th><th>Indicações</th><th>Fechados</th><th>Comissão</th><th></th></tr>${rows||'<tr><td colspan=6 class="mu">Nenhum divulgador ainda.</td></tr>'}</table></div>
+  <p class="mu">Para cadastrar: compartilhe esta página com a pessoa (acesso de Colaborador), clique em “Cadastrar divulgador”, busque por nome ou e-mail e informe o telefone. Se a busca não achar a pessoa, ela mesma preenche nome e telefone no primeiro acesso.</p></div>`}
+
+function cfgv(){
+  const c={...DEF.com,...cfg.com};
+  const line=k=>`<label>${CO[k]}</label><div style="display:flex;gap:8px"><select name="t${k}"><option value="fixo" ${c[k].t==='fixo'?'selected':''}>Valor fixo (R$)</option><option value="pct" ${c[k].t==='pct'?'selected':''}>% do pedido</option></select><input name="v${k}" type="number" step="0.01" value="${c[k].v}"></div>`;
+  return `<form class="box" id="cf"><h3 style="margin-top:0">Configurações</h3><label>Seu WhatsApp (com DDD)</label>
+  <input name="w" type="tel" value="${E(cfg.whatsapp)}" placeholder="21 99999-9999">
+  <h3>Comissão por empresa</h3>${line('go21')}${line('fac')}${line('td')}
+  <div class="row" style="justify-content:flex-start"><button class="btn">Salvar</button></div></form>`}
+document.addEventListener('submit',async e=>{
+  if(e.target.id!=='cf')return;e.preventDefault();const f=e.target;
+  const com={};['go21','fac','td'].forEach(k=>com[k]={t:f['t'+k].value,v:+f['v'+k].value||0});
+  await db.doc('config/settings').set({whatsapp:f.w.value.trim(),com});
+  const b=f.querySelector('button');b.textContent='Salvo ✓';setTimeout(()=>b.textContent='Salvar',1500)});
+
+function leadForm(k,co0){
+  const cc=k?leads[k].company:(co0||'go21');
+  modal(`<h2>${k?'Editar':'Nova'} indicação</h2><span class="tag ${cc}">${CO[cc]}</span><form id="f"><input type="hidden" name="company" value="${cc}" onchange="$('#ff').classList.toggle('hide',this.value==='td');$('#ft').classList.toggle('hide',this.value!=='td')">
+  <label>Nome do cliente</label><input name="nome"><label>Telefone</label><input name="tel" type="tel">
+  <div id="ff"><label>Placa do veículo</label><input name="placa" maxlength="8"><label>Município em que o veículo roda</label><input name="mun">
+  <label>Usado em aplicativo (moto ou carro)?</label><select name="app"><option value="0">Não</option><option value="1">Sim</option></select></div>
+  <div id="ft" class="hide"><label>Bairro</label><input name="bairro"><label>Tipo de produto</label>
+  <div class="chk">${PRODS.map(p=>`<label><input type="checkbox" name="prod" value="${p}">${p}</label>`).join('')}</div>
+  <label>Medida da obra (m²)</label><input name="m2" type="number" min="0" step="any">
+  <label>Distância em que o caminhão para da obra (m)</label><input name="dist" type="number" min="0" step="any"></div>
+  <div class="err" id="er"></div><div class="row"><button type="button" class="btn g" onclick="closeM()">Cancelar</button><button class="btn">Salvar indicação</button></div></form>`);
+  if(co0&&!k){$('#f').company.value=co0;$('#f').company.dispatchEvent(new Event('change'))}
+  if(k){const l=leads[k],f=$('#f');f.company.value=l.company;f.company.dispatchEvent(new Event('change'));
+    f.nome.value=l.nome;f.tel.value=l.tel;
+    if(l.company!=='td'){f.placa.value=l.placa;f.mun.value=l.mun;f.app.value=l.app?'1':'0'}
+    else{f.bairro.value=l.bairro;f.m2.value=l.m2;f.dist.value=l.dist;f.querySelectorAll('[name=prod]').forEach(x=>x.checked=(l.prods||[]).includes(x.value))}}
+  $('#f').onsubmit=async e=>{e.preventDefault();const f=e.target,g=n=>f[n].value.trim(),co=g('company');
+    const d={company:co,nome:g('nome'),tel:g('tel'),seller:k?leads[k].seller:(mine?mine.name:(admin?'Consultor':'Vendedor')),at:k?leads[k].at:Date.now()};
+    if(co!=='td'){Object.assign(d,{placa:g('placa').toUpperCase(),mun:g('mun'),app:g('app')==='1'});if(!d.placa||!d.mun)return $('#er').textContent='Preencha todos os campos.'}
+    else{Object.assign(d,{bairro:g('bairro'),prods:[...f.querySelectorAll('[name=prod]:checked')].map(x=>x.value),m2:g('m2'),dist:g('dist')});
+      if(!d.bairro||!d.prods.length||!d.m2||!d.dist)return $('#er').textContent='Preencha todos os campos e escolha ao menos um produto.'}
+    if(!d.nome||!d.tel)return $('#er').textContent='Preencha nome e telefone.';
+    try{if(k){const l=leads[k];await db.doc(`leads/${l.uid}/items/${l.id}`).set(d);return closeM()}
+      const r=await db.collection(`leads/${myId}/items`).add(d);window._last={...d,id:r.id,uid:myId};
+      modal(`<h2>Indicação salva ✓</h2><p>Agora envie para o WhatsApp para eu preparar o orçamento.</p>
+      ${co!=='td'?`<p><button class="btn g" onclick="dup('${myId}/${r.id}')">Cotar também na ${CO[OTH[co]]}</button></p>`:''}<div class="row"><button class="btn g" onclick="closeM()">Depois</button><a class="wa btn" style="background:var(--wa);text-decoration:none" target="_blank" rel="noopener" href="${wa({...d,id:r.id,uid:myId})}" onclick="closeM()">Enviar para o consultor</a></div>`)}
+    catch(x){$('#er').textContent='Não foi possível salvar. Tente novamente.'}};
+}
+
+function editForm(k,st){
+  const l=leads[k],s=stat[k]||{};st=st||s.st||'novo';
+  modal(`<h2>${E(l.nome)}</h2><p class="mu">${CO[l.company]} · ${E(l.seller)}</p><form id="ef">
+  <label>Status</label><select name="st">${ST.map(x=>`<option value="${x[0]}" ${x[0]===st?'selected':''}>${x[1]}</option>`).join('')}</select>
+  <label>Valor do pedido (R$)</label><input name="valor" type="number" step="0.01" value="${s.valor||''}">
+  <label>Cotação para o vendedor</label><textarea name="prop" rows="3">${E(s.prop||'')}</textarea><a class="btn g sm" target="_blank" rel="noopener" href="#" onclick="this.href=qLink('${E(k)}')">Enviar cotação ao vendedor pelo WhatsApp</a>
+  <div class="row"><button type="button" class="btn g" onclick="closeM()">Cancelar</button><button class="btn">Salvar</button></div></form>`);
+  $('#ef').onsubmit=async e=>{e.preventDefault();const f=e.target;
+    await db.doc(`status/${l.uid}/items/${l.id}`).set((()=>{const o=stat[k]||{},n=(f.st.value==='novo'&&f.prop.value.trim())?'orc':f.st.value;return {st:n,valor:+f.valor.value||0,prop:f.prop.value.trim(),upd:Date.now(),mov:n!==(o.st||'novo')?Date.now():(o.mov||null)}})());closeM()};
+}
+
+function lDel(k){
+  const l=leads[k];
+  modal(`<h2>Excluir indicação de ${E(l.nome)}?</h2><p class="mu">Esta ação não pode ser desfeita.</p><div class="row"><button class="btn g" onclick="closeM()">Cancelar</button><button class="btn" style="background:var(--bad)" id="yes">Excluir</button></div>`);
+  $('#yes').onclick=async()=>{try{await db.doc(`leads/${l.uid}/items/${l.id}`).delete();
+    if(admin)await db.doc(`status/${l.uid}/items/${l.id}`).delete()}catch(x){}
+    delete leads[k];delete stat[k];closeM();render()};
+}
+let pick=null;
+function sForm(k){
+  const v=k?sellers[k]:{};pick=k||null;
+  modal(`<h2>${k?'Editar':'Cadastrar'} divulgador</h2><form id="sf">
+  ${k?'':'<label>Buscar pessoa (nome ou e-mail)</label><input id="sq" autocomplete="off"><div id="sr"></div>'}
+  <label>Nome</label><input name="n" value="${E(v.name||'')}" required>
+  <label>Telefone (WhatsApp)</label><input name="t" type="tel" value="${E(v.tel||'')}" required>
+  <div class="err" id="er"></div><div class="row"><button type="button" class="btn g" onclick="closeM()">Cancelar</button><button class="btn">Salvar</button></div></form>`);
+  if(!k){
+    $('#sq').oninput=async e=>{const r=await U.search(e.target.value.trim());
+      $('#sr').innerHTML=r.map(p=>`<div class="pk" data-id="${E(p.id)}" data-n="${E(p.name)}"><b>${E(p.name)}</b> <span class="mu">${E(p.email||'')}</span></div>`).join('')||'<div class="mu">Ninguém encontrado.</div>'};
+    $('#sr').onclick=e=>{const p=e.target.closest('.pk');if(!p)return;pick=p.dataset.id;
+      $('#sr').querySelectorAll('.pk').forEach(x=>x.classList.toggle('on',x===p));$('#sf').n.value=p.dataset.n};
+  }
+  $('#sf').onsubmit=async e=>{e.preventDefault();const f=e.target;
+    if(!pick)return $('#er').textContent='Escolha uma pessoa na busca.';
+    const d={name:f.n.value.trim(),tel:f.t.value.trim()};
+    try{k?await db.doc('sellers/'+k).update(d):await db.doc('sellers/'+pick).set({...d,at:Date.now()});closeM()}
+    catch(x){$('#er').textContent='Não foi possível salvar.'}};
+}
+function sDel(k){
+  modal(`<h2>Remover ${E(sellers[k].name)}?</h2><p class="mu">As indicações dele continuam salvas, mas ele deixa de aparecer na lista.</p><div class="row"><button class="btn g" onclick="closeM()">Cancelar</button><button class="btn" style="background:var(--bad)" id="yes">Remover</button></div>`);
+  $('#yes').onclick=async()=>{await db.doc('sellers/'+k).delete();delete sellers[k];closeM();render()};
+}
+const sha=async t=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+const norm=c=>c.toUpperCase().replace(/[^A-Z0-9]/g,'');
+function gen(){const a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s=[...crypto.getRandomValues(new Uint8Array(8))].map(x=>a[x%32]).join('');return s.slice(0,4)+'-'+s.slice(4)}
+const LINK=location.origin+location.pathname;
+function conf(t,m,fn){modal(`<h2>${t}</h2><p class="mu">${m}</p><div class="row"><button class="btn g" onclick="closeM()">Cancelar</button><button class="btn" style="background:var(--bad)" id="yes">Confirmar</button></div>`);$('#yes').onclick=async()=>{await fn();closeM()}}
+
+function profileForm(){
+  modal(`<h2>Bem-vindo!</h2><p class="mu">Digite o código que você recebeu para acessar suas indicações.</p><form id="pf"><label>Código de acesso</label><input name="c" placeholder="XXXX-XXXX" autocomplete="off" style="text-transform:uppercase" required><div class="err" id="er"></div><div class="row"><button type="button" class="btn g" onclick="closeM()">Fechar</button><button class="btn">Entrar</button></div></form>`);
+  $('#pf').onsubmit=async e=>{e.preventDefault();try{
+    const s=await db.doc('convites/'+await sha(norm(e.target.c.value))).get();
+    if(!s.exists)return $('#er').textContent='Código inválido. Confira com quem enviou.';
+    const c=s.data();await db.doc('sellers/'+myId).set({sid:c.sid,name:c.nome,at:Date.now()});closeM()}
+    catch(x){$('#er').textContent='Não foi possível validar o código.'}};
+}
+
+function vend(){
+  const byS={};Object.entries(sellers).forEach(([u,v])=>{if(v.sid)(byS[v.sid]=byS[v.sid]||[]).push(u)});
+  const tot=us=>{let n=0,f=0,c=0;us.forEach(u=>Object.values(leads).filter(l=>l.uid===u).forEach(l=>{n++;if(['fech','pago'].includes(sOf(l)))f++;c+=com(l)}));return `<td>${n}</td><td>${f}</td><td>${R(c)}</td>`};
+  const rows=Object.entries(cads).map(([sid,c])=>{const us=byS[sid]||[];
+    return `<tr><td>${E(c.nome)} ${E(c.sobrenome)}</td><td>${E(c.tel)}</td><td>${E(c.bairro)}</td><td><b>${E(c.code)}</b></td><td>${us.length?'Ativo':'Aguardando acesso'}</td>${tot(us)}
+    <td><button class="btn g sm" data-k="${E(sid)}" onclick="invite(this.dataset.k)">Convite</button><button class="btn g sm" data-k="${E(sid)}" onclick="sForm(this.dataset.k)">Editar</button><button class="btn g sm" data-k="${E(sid)}" onclick="newCode(this.dataset.k)">Novo código</button><button class="btn g sm" data-k="${E(sid)}" onclick="sDel(this.dataset.k)">Remover</button></td></tr>`}).join('')
+   +Object.entries(sellers).filter(([u,v])=>!v.sid).map(([u,v])=>`<tr><td>${E(v.name)}</td><td>${E(v.tel||'')}</td><td></td><td>—</td><td>Cadastro antigo</td>${tot([u])}<td></td></tr>`).join('');
+  return `<div class="box" style="max-width:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0">Vendedores</h3><button class="btn" onclick="sForm()">+ Cadastrar vendedor</button></div>
+  <div class="tw"><table><tr><th>Nome</th><th>Telefone</th><th>Bairro</th><th>Código</th><th>Situação</th><th>Indicações</th><th>Fechados</th><th>Comissão</th><th></th></tr>${rows||'<tr><td colspan=9 class="mu">Nenhum vendedor ainda.</td></tr>'}</table></div>
+  <p class="mu">Depois de cadastrar, clique em “Convite” para enviar o link e o código pelo WhatsApp.</p></div>`}
+
+function sForm(sid){
+  const v=sid?cads[sid]:{};
+  modal(`<h2>${sid?'Editar':'Cadastrar'} vendedor</h2><form id="sf"><label>Nome</label><input name="n" value="${E(v.nome||'')}" required>
+  <label>Sobrenome</label><input name="s" value="${E(v.sobrenome||'')}" required>
+  <label>Telefone (WhatsApp)</label><input name="t" type="tel" value="${E(v.tel||'')}" required>
+  <label>Bairro</label><input name="b" value="${E(v.bairro||'')}" required><div class="err" id="er"></div>
+  <div class="row"><button type="button" class="btn g" onclick="closeM()">Cancelar</button><button class="btn">Salvar</button></div></form>`);
+  $('#sf').onsubmit=async e=>{e.preventDefault();const f=e.target;
+    const d={nome:f.n.value.trim(),sobrenome:f.s.value.trim(),tel:f.t.value.trim(),bairro:f.b.value.trim()};
+    try{if(sid){await db.doc('cadastros/'+sid).update(d);
+        await db.doc('convites/'+await sha(norm(v.code))).update({nome:d.nome+' '+d.sobrenome});
+        for(const u in sellers)if(sellers[u].sid===sid)await db.doc('sellers/'+u).update({name:d.nome+' '+d.sobrenome});closeM()}
+      else{const id=[...crypto.getRandomValues(new Uint8Array(8))].map(x=>x.toString(16).padStart(2,'0')).join(''),code=gen();
+        await db.doc('cadastros/'+id).set({...d,code,at:Date.now()});
+        await db.doc('convites/'+await sha(norm(code))).set({sid:id,nome:d.nome+' '+d.sobrenome});
+        cads[id]={...d,code};invite(id)}}
+    catch(x){$('#er').textContent='Não foi possível salvar.'}};
+}
+
+function invite(sid){
+  const c=cads[sid],msg=`Olá, ${c.nome}! Seu acesso à plataforma de indicações:\nLink: ${LINK}\nCódigo de acesso: ${c.code}`;
+  let n=(c.tel||'').replace(/\D/g,'');if(n.length<=11)n='55'+n;
+  modal(`<h2>Convite para ${E(c.nome)}</h2><textarea rows="5" readonly id="im">${E(msg)}</textarea>
+  <p class="mu">Código de ${E(c.nome)}: <b>${E(c.code)}</b>. Lembre de compartilhar a página com a pessoa (Colaborador).</p>
+  <div class="row"><button class="btn g" onclick="closeM()">Fechar</button><button class="btn g" id="cp">Copiar</button><a class="btn" style="background:var(--wa);text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/${n}?text=${encodeURIComponent(msg)}">Enviar no WhatsApp</a></div>`);
+  $('#cp').onclick=async()=>{try{await navigator.clipboard.writeText(msg);$('#cp').textContent='Copiado ✓'}catch(x){$('#im').select()}};
+}
+
+function newCode(sid){
+  conf('Gerar novo código?','O código antigo deixa de funcionar e o acesso atual da pessoa é desativado até ela usar o novo código.',async()=>{
+    const c=cads[sid],code=gen();
+    await db.doc('convites/'+await sha(norm(c.code))).delete();
+    await db.doc('convites/'+await sha(norm(code))).set({sid,nome:c.nome+' '+c.sobrenome});
+    await db.doc('cadastros/'+sid).update({code});
+    for(const u in sellers)if(sellers[u].sid===sid)await db.doc('sellers/'+u).delete();
+    cads[sid].code=code});
+}
+function sDel(sid){
+  const c=cads[sid];
+  conf('Remover '+E(c.nome)+'?','O acesso dele é desativado. As indicações já feitas continuam salvas.',async()=>{
+    await db.doc('convites/'+await sha(norm(c.code))).delete();
+    for(const u in sellers)if(sellers[u].sid===sid)await db.doc('sellers/'+u).delete();
+    await db.doc('cadastros/'+sid).delete();delete cads[sid];render()});
+}
+function novo(){
+  if(!mine&&!admin)return `<div class="box"><h3 style="margin-top:0">Informe seu código de acesso</h3><p class="mu">Digite o código que você recebeu para começar a cadastrar clientes.</p><button class="btn" onclick="profileForm()">Informar código</button></div>`;
+  const cd=(co,tag,bd,bt,desc)=>`<div class="kpi" style="${bd};cursor:pointer" onclick="leadForm(null,'${co}')"><span class="tag ${co}">${tag}</span><b style="font-size:20px">${CO[co]}</b><p class="mu">${desc}</p><button class="btn" style="${bt}">Cadastrar na ${CO[co]}</button></div>`;
+  const veh='Nome, telefone, placa, município e uso em aplicativo.';
+  return `<h2 style="margin:0 0 4px">Cadastrar novo cliente</h2><p class="mu" style="margin-top:0">Escolha a empresa, preencha os dados e envie para o meu WhatsApp. Para cotar o mesmo cliente na 21 Go e na Facility, use “Duplicar” depois de salvar.</p>
+  <div class="grid" style="max-width:960px">${cd('go21','Proteção veicular','border-top:5px solid #1d4ed8','background:#1d4ed8;color:#fb923c',veh)}
+  ${cd('fac','Proteção veicular','border-top:5px solid #16a34a','background:#16a34a',veh)}
+  ${cd('td','Construção civil','border-top:5px solid #14295a','background:#14295a;color:#f6f1e3','Nome, telefone, bairro, produtos, metragem e distância do caminhão.')}</div>`}
+
+async function dup(k){
+  const l=leads[k]||(window._last&&window._last.uid+'/'+window._last.id===k?window._last:null);if(!l)return;
+  const to=OTH[l.company],{id,uid,...d}=l,n={...d,company:to,at:Date.now()};
+  try{const r=await db.collection(`leads/${l.uid}/items`).add(n);
+    modal(`<h2>Duplicado para ${CO[to]} ✓</h2><p>${E(n.nome)} foi cadastrado também na ${CO[to]}. Envie para o WhatsApp para eu fazer essa cotação.</p>
+    <div class="row"><button class="btn g" onclick="closeM()">Depois</button><a class="btn" style="background:var(--wa);text-decoration:none" target="_blank" rel="noopener" href="${wa({...n,id:r.id,uid:l.uid})}" onclick="closeM()">Enviar para o consultor</a></div>`)}
+  catch(x){modal('<h2>Não foi possível duplicar</h2><div class="row"><button class="btn" onclick="closeM()">Fechar</button></div>')}
+}
+function qLink(k){
+  const l=leads[k],f=$('#ef'),sv=sellers[l.uid]||{},tel=((cads[sv.sid]||{}).tel||sv.tel||'').replace(/\D/g,''),n=tel&&tel.length<=11?'55'+tel:tel,v=+f.valor.value;
+  const m=`Olá, ${(l.seller||'').split(' ')[0]}! Segue a cotação do cliente ${l.nome} (${CO[l.company]}):\n${f.prop.value.trim()}${v?'\nValor: '+R(v):''}`;
+  return `https://wa.me/${n}?text=${encodeURIComponent(m)}`}
+function detail(k){
+  const l=leads[k];if(!l)return;
+  const s=stat[k]||{},stn=(ST.find(x=>x[0]===(s.st||'novo'))||[])[1],veh=l.company!=='td',can=admin||!s.st||s.st==='novo',c=com(l);
+  const rows=veh?[['Placa',l.placa],['Município',l.mun],['Aplicativo',l.app?'Sim':'Não']]:[['Bairro',l.bairro],['Produtos',(l.prods||[]).join(', ')],['Obra',l.m2+' m²'],['Caminhão para a',l.dist+' m']];
+  const b=(t,fn,g)=>`<button class="btn ${g?'g':''} sm" data-k="${E(k)}" onclick="${fn}">${t}</button>`;
+  modal(`<span class="tag ${l.company}">${CO[l.company]}</span><h2 style="margin-top:6px">${E(l.nome)}</h2>
+  <p class="mu">${E(l.tel)} · ${stn}${admin?' · '+E(l.seller):''}</p><p class="mu">Criado em ${fd(l.at)}${s.mov?' · Movido em '+fd(s.mov):''}</p>
+  <dl>${rows.map(r=>`<div><dt>${r[0]}</dt><dd>${E(r[1])}</dd></div>`).join('')}</dl>
+  ${s.prop?`<div class="prop"><b>Cotação do consultor</b><br>${E(s.prop)}</div>`:''}${s.valor?`<div class="mu">Pedido: ${R(s.valor)}</div>`:''}${c?`<div class="ok">Comissão: ${R(c)}</div>`:''}
+  <div style="margin-top:12px"><a class="wa" style="margin:0 4px 6px 0" href="${wa(l)}" target="_blank" rel="noopener">Enviar para o consultor</a>${veh?b('Duplicar para '+CO[OTH[l.company]],"closeM();dup(this.dataset.k)"):''}${admin?b('Status e cotação',"editForm(this.dataset.k)",1):''}${can?b('Editar dados',"closeM();leadForm(this.dataset.k)",1)+b('Excluir',"lDel(this.dataset.k)",1):''}${b('Fechar','closeM()',1)}</div>`);
+}
+const CL={novo:'#9ca3af',orc:'#3b82f6',fech:'#f59e0b',pago:'#10b981',perd:'#ef4444'},LV={novo:1,orc:2,fech:3,pago:4,perd:1};
+function card(l){
+  const k=l.uid+'/'+l.id,s=stat[k]||{},sn=s.st||'novo',veh=l.company!=='td',c=com(l),can=admin||sn==='novo';
+  const ms=Date.now()-(l.at||Date.now()),age=ms<864e5?Math.max(1,Math.round(ms/36e5))+'h':Math.floor(ms/864e5)+'d';
+  const rows=veh?[['Placa',l.placa],['Município',l.mun]]:[['Bairro',l.bairro],['Produtos',(l.prods||[]).join(', ')],['Obra',l.m2+' m²'],['Caminhão para a',l.dist+' m']];
+  return `<div class="card ${l.company}" ${admin?'draggable="true"':''} data-k="${E(k)}">
+  <div class="seg">${[1,2,3,4].map(i=>`<u class="${i<=LV[sn]?(sn==='perd'?'bad':'on'):''}"></u>`).join('')}</div>
+  <div class="top"><span class="tag ${l.company}">${CO[l.company]}</span>${veh&&l.app?'<span class="chip2">Aplicativo</span>':''}<span class="age">${age}</span></div>
+  <div class="nm">${E(l.nome)}</div>${s.valor?`<div class="val">${R(s.valor)}</div>`:''}
+  <div class="mu">${E(l.tel)}</div>${admin?`<span class="chip2" style="display:inline-block;margin-top:6px">${E(l.seller)}</span>`:''}
+  <dl>${rows.map(r=>`<div><dt>${r[0]}</dt><dd>${E(r[1])}</dd></div>`).join('')}</dl>
+  ${s.prop?`<div class="prop"><b>Cotação do consultor</b><br>${E(s.prop)}</div>`:''}${c?`<div class="ok">Comissão: ${R(c)}</div>`:''}
+  <a class="wa" href="${wa(l)}" target="_blank" rel="noopener">Enviar para o consultor</a>${veh?`<button class="btn g sm" data-k="${E(k)}" onclick="dup(this.dataset.k)">Duplicar para ${CO[OTH[l.company]]}</button>`:''}${can?`<div><button class="btn g sm" data-k="${E(k)}" onclick="leadForm(this.dataset.k)">Editar dados</button><button class="btn g sm" data-k="${E(k)}" onclick="lDel(this.dataset.k)">Excluir</button></div>`:''}</div>`}
+function kanban(){
+  const L=vis();
+  if(!L.length&&!admin)return '<p class="mu">Nenhuma indicação ainda. Use a aba “Cadastrar cliente” para começar.</p>';
+  return `${admin?'':'<p class="mu" style="margin-top:0">Aqui você acompanha suas indicações. O consultor atualiza o status e envia a cotação para você.</p>'}<div class="board">${ST.map(([id,nm])=>{const x=L.filter(l=>sOf(l)===id);
+    return `<div class="col" data-st="${id}"><div class="ch"><div class="ct"><i style="background:${CL[id]}"></i>${nm}${id==='novo'?`<button class="plus" title="Nova indicação" onclick="tab='novo';render()">+</button>`:''}</div><div class="cs">${x.length} ${x.length===1?'indicação':'indicações'}</div></div><div class="cb">${x.map(card).join('')}</div></div>`}).join('')}</div>`}
+const fd=t=>t?new Date(t).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit'}):'';
+function card(l){
+  const k=l.uid+'/'+l.id,s=stat[k]||{},sn=s.st||'novo',veh=l.company!=='td',c=com(l);
+  const info=veh?[l.placa,l.mun]:[l.bairro,(l.prods||[]).join(', '),l.m2+' m²',l.dist+' m'];
+  return `<div class="card ${l.company}" ${admin?'draggable="true"':''} data-k="${E(k)}">
+  <div class="seg">${[1,2,3,4].map(i=>`<u class="${i<=LV[sn]?(sn==='perd'?'bad':'on'):''}"></u>`).join('')}</div>
+  <div class="top"><span class="tag ${l.company}">${CO[l.company]}</span>${veh&&l.app?'<span class="chip2">App</span>':''}${s.valor?`<span class="val">${R(s.valor)}</span>`:''}</div>
+  <div class="nm">${E(l.nome)}</div>
+  <div class="mu sm2">${E(l.tel)} · ${info.map(E).join(' · ')}</div>
+  ${admin?`<div class="mu sm2">Vendedor: ${E(l.seller)}</div>`:''}
+  ${s.prop?`<div class="prop">${E(s.prop)}</div>`:''}${c?`<div class="ok sm2">Comissão: ${R(c)}</div>`:''}
+  <div class="dts">Criado ${fd(l.at)}${s.mov?' · Movido '+fd(s.mov):''}</div>
+  ${admin?'':`<a class="wa sm" href="${wa(l)}" target="_blank" rel="noopener">Enviar para o consultor</a>`}</div>`}
+const mkTel=v=>{const d=v.replace(/\D/g,'').slice(0,11);return d.length<3?(d?'('+d:''):d.length<7?`(${d.slice(0,2)}) ${d.slice(2)}`:d.length<11?`(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`:`(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`};
+document.addEventListener('input',e=>{if(e.target.type==='tel')e.target.value=mkTel(e.target.value)});
+document.addEventListener('focusin',e=>{if(e.target.type==='tel'&&!e.target.placeholder)e.target.placeholder='(00) 00000-0000'});
+function profileForm(){modal(`<h2>Acesso não ativo</h2><p class="mu">Seu cadastro não foi encontrado. Fale com o consultor.</p><div class="row"><button class="btn" onclick="document.getElementById('out').click()">Sair</button></div>`)}
+function sForm(sid){
+  const v=sid?cads[sid]:{};
+  modal(`<h2>${sid?'Editar':'Cadastrar'} vendedor</h2><form id="sf"><label>Nome</label><input name="n" value="${E(v.nome||'')}" required>
+  <label>Sobrenome</label><input name="s" value="${E(v.sobrenome||'')}" required>
+  <label>Telefone (WhatsApp) ${sid?'<span class="mu">— não pode ser alterado</span>':''}</label><input name="t" type="tel" value="${E(v.tel||'')}" required>
+  <label>Bairro</label><input name="b" value="${E(v.bairro||'')}" required><div class="err" id="er"></div>
+  <div class="row"><button type="button" class="btn g" onclick="closeM()">Cancelar</button><button class="btn">Salvar</button></div></form>`);
+  if(sid)$('#sf').t.readOnly=true;
+  $('#sf').onsubmit=async e=>{e.preventDefault();const f=e.target;
+    const d={nome:f.n.value.trim(),sobrenome:f.s.value.trim(),tel:f.t.value.trim(),bairro:f.b.value.trim()},nm=d.nome+' '+d.sobrenome;
+    try{if(sid){await db.doc('cadastros/'+sid).update(d);await db.doc('sellers/'+sid).update({name:nm});closeM()}
+      else{const code=gen(),uid=await FB.create(d.tel,code);
+        await db.doc('cadastros/'+uid).set({...d,code,at:Date.now()});
+        await db.doc('sellers/'+uid).set({sid:uid,name:nm,tel:d.tel,at:Date.now()});
+        cads[uid]={...d,code};invite(uid)}}
+    catch(x){$('#er').textContent=x&&x.code==='auth/email-already-in-use'?'Já existe um vendedor com esse telefone.':'Não foi possível salvar.'}};
+}
+function invite(sid){
+  const c=cads[sid],msg=`Olá, ${c.nome}! Seu acesso à plataforma da Reis Consultoria:\nLink: ${LINK}\nTelefone: ${c.tel}\nCódigo de acesso: ${c.code}`;
+  let n=(c.tel||'').replace(/\D/g,'');if(n.length<=11)n='55'+n;
+  modal(`<h2>Convite para ${E(c.nome)}</h2><textarea rows="5" readonly id="im">${E(msg)}</textarea>
+  <p class="mu">O vendedor entra com o telefone e o código <b>${E(c.code)}</b>.</p>
+  <div class="row"><button class="btn g" onclick="closeM()">Fechar</button><button class="btn g" id="cp">Copiar</button><a class="btn" style="background:var(--wa);text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/${n}?text=${encodeURIComponent(msg)}">Enviar no WhatsApp</a></div>`);
+  $('#cp').onclick=async()=>{try{await navigator.clipboard.writeText(msg);$('#cp').textContent='Copiado ✓'}catch(x){$('#im').select()}};
+}
+function newCode(sid){
+  conf('Gerar novo código?','O código antigo deixa de funcionar. Envie o novo código ao vendedor.',async()=>{
+    const c=cads[sid],code=gen();await FB.changePass(c.tel,c.code,code);
+    await db.doc('cadastros/'+sid).update({code});cads[sid].code=code;invite(sid)});
+}
+function sDel(sid){
+  const c=cads[sid];
+  conf('Remover '+E(c.nome)+'?','O acesso dele é encerrado. As indicações já feitas continuam salvas.',async()=>{
+    try{await FB.remove(c.tel,c.code)}catch(x){}
+    await db.doc('sellers/'+sid).delete();await db.doc('cadastros/'+sid).delete();delete cads[sid];delete sellers[sid];render()});
+}
+let drag=null;
+document.addEventListener('dragstart',e=>{const c=e.target.closest&&e.target.closest('.card');if(c)drag=c.dataset.k});
+document.addEventListener('dragover',e=>{const c=e.target.closest('.col');if(c&&drag){e.preventDefault();c.classList.add('over')}});
+document.addEventListener('dragleave',e=>{const c=e.target.closest&&e.target.closest('.col');if(c)c.classList.remove('over')});
+document.addEventListener('drop',async e=>{
+  const c=e.target.closest('.col');if(!c||!drag||!admin)return;e.preventDefault();c.classList.remove('over');
+  const k=drag,st=c.dataset.st;drag=null;
+  if(st==='fech'&&!(stat[k]||{}).valor)return editForm(k,st);
+  const l=leads[k];await db.doc(`status/${l.uid}/items/${l.id}`).set({...(stat[k]||{}),st,upd:Date.now(),mov:st!==sOf(l)?Date.now():((stat[k]||{}).mov||null)})});
+document.addEventListener('click',e=>{
+  if(e.target.closest('a,button'))return;const c=e.target.closest('.card');if(c)detail(c.dataset.k)});
+</script>
+<script type="module">
+import {initializeApp,getApps} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,createUserWithEmailAndPassword,updatePassword,deleteUser} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,collection,getDoc,setDoc,updateDoc,deleteDoc,addDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {firebaseConfig} from "./firebase-config.js";
+const app=initializeApp(firebaseConfig),auth=getAuth(app),fs=getFirestore(app);
+const q=s=>document.querySelector(s);
+const mail=t=>t.replace(/\D/g,'')+'@vendedor.reisconsultoria.app';
+const pw=c=>c.toUpperCase().replace(/[^A-Z0-9]/g,'');
+const wrap=s=>({id:s.id,exists:s.exists(),data:()=>s.data()});
+const dbShim={
+  doc:p=>{const r=doc(fs,...p.split('/'));return{get:async()=>wrap(await getDoc(r)),set:d=>setDoc(r,d),update:d=>updateDoc(r,d),delete:()=>deleteDoc(r),onSnapshot:(cb,er)=>onSnapshot(r,s=>cb(wrap(s)),er)}},
+  collection:p=>{const r=collection(fs,...p.split('/'));return{add:async d=>({id:(await addDoc(r,d)).id}),onSnapshot:(cb,er)=>onSnapshot(r,s=>cb({docs:s.docs.map(wrap)}),er)}}
+};
+const sec=()=>getAuth(getApps().find(x=>x.name==='sec')||initializeApp(firebaseConfig,'sec'));
+window.FB={
+  async create(tel,code){const a=sec(),c=await createUserWithEmailAndPassword(a,mail(tel),pw(code));await signOut(a);return c.user.uid},
+  async changePass(tel,old,nw){const a=sec(),c=await signInWithEmailAndPassword(a,mail(tel),pw(old));await updatePassword(c.user,pw(nw));await signOut(a)},
+  async remove(tel,code){const a=sec(),c=await signInWithEmailAndPassword(a,mail(tel),pw(code));await deleteUser(c.user)}
+};
+const tabs=v=>{q('#tv').classList.toggle('on',v);q('#tc').classList.toggle('on',!v);q('#fv').classList.toggle('hide',!v);q('#fc').classList.toggle('hide',v);q('#le').textContent=''};
+q('#tv').onclick=()=>tabs(true);q('#tc').onclick=()=>tabs(false);
+const fail=e=>{q('#le').textContent=['auth/invalid-credential','auth/wrong-password','auth/user-not-found','auth/invalid-email'].includes(e.code)?'Dados incorretos. Confira e tente novamente.':'Não foi possível entrar. Tente de novo.'};
+q('#fv').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signInWithEmailAndPassword(auth,mail(f.t.value),pw(f.c.value))}catch(x){fail(x)}};
+q('#fc').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signInWithEmailAndPassword(auth,f.e.value.trim(),f.p.value)}catch(x){fail(x)}};
+onAuthStateChanged(auth,async u=>{
+  if(!u){q('#login').classList.add('show');return}
+  let adm=false;try{adm=(await getDoc(doc(fs,'admins',u.uid))).exists()}catch(x){}
+  window.__fb={user:{id:()=>u.uid,canEdit:()=>adm,me:async()=>({name:''})},db:dbShim};
+  q('#login').classList.remove('show');
+  if(!q('#out')){const b=document.createElement('button');b.id='out';b.className='btn g';b.textContent='Sair';b.onclick=async()=>{await signOut(auth);location.reload()};q('header').appendChild(b)}
+  window.__fbResolve();
+});
+</script>
+</body></html>
