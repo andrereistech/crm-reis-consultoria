@@ -487,7 +487,8 @@ q('#fv').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signIn
 q('#fc').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signInWithEmailAndPassword(auth,f.e.value.trim(),f.p.value)}catch(x){fail(x)}};
 onAuthStateChanged(auth,async u=>{
   if(!u){q('#login').classList.add('show');return}
-  let adm=false;try{adm=(await getDoc(doc(fs,'admins',u.uid))).exists()}catch(x){window.__admErr=x.code||x.message}
+  let adm=false;try{adm=(await getDoc(doc(fs,'admins',u.uid))).exists()}catch(x){window.__admErr=x.code||x.message;
+    try{const t=await u.getIdToken(),r=await fetch(`https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/admins/${u.uid}?key=${firebaseConfig.apiKey}`,{headers:{Authorization:'Bearer '+t}}),j=await r.json();window.__admErr+=' | REST '+r.status+': '+(j.error?j.error.message:'documento encontrado')}catch(y){window.__admErr+=' | REST falhou: '+y.message}}
   window.__fb={user:{id:()=>u.uid,canEdit:()=>adm,me:async()=>({name:''})},db:dbShim};
   q('#login').classList.remove('show');
   if(!q('#out')){const b=document.createElement('button');b.id='out';b.className='btn g';b.textContent='Sair';b.onclick=async()=>{await signOut(auth);location.reload()};q('header').appendChild(b)}
