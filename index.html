@@ -482,7 +482,7 @@ window.FB={
 };
 const tabs=v=>{q('#tv').classList.toggle('on',v);q('#tc').classList.toggle('on',!v);q('#fv').classList.toggle('hide',!v);q('#fc').classList.toggle('hide',v);q('#le').textContent=''};
 q('#tv').onclick=()=>tabs(true);q('#tc').onclick=()=>tabs(false);
-const fail=e=>{q('#le').textContent=['auth/invalid-credential','auth/wrong-password','auth/user-not-found','auth/invalid-email'].includes(e.code)?'Dados incorretos. Confira e tente novamente.':'Não foi possível entrar. Tente de novo.'};
+const fail=e=>{q('#le').textContent=['auth/invalid-credential','auth/wrong-password','auth/user-not-found','auth/invalid-email'].includes(e.code)?'Dados incorretos. Confira e tente novamente.':'Não foi possível entrar ('+(e.code||e.message)+').'};
 q('#fv').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signInWithEmailAndPassword(auth,mail(f.t.value),pw(f.c.value))}catch(x){fail(x)}};
 q('#fc').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signInWithEmailAndPassword(auth,f.e.value.trim(),f.p.value)}catch(x){fail(x)}};
 onAuthStateChanged(auth,async u=>{
