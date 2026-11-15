@@ -463,9 +463,9 @@ document.addEventListener('click',e=>{
 <script type="module">
 import {initializeApp,getApps} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,createUserWithEmailAndPassword,updatePassword,deleteUser} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,collection,getDoc,setDoc,updateDoc,deleteDoc,addDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {initializeFirestore,doc,collection,getDoc,setDoc,updateDoc,deleteDoc,addDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import {firebaseConfig} from "./firebase-config.js";
-const app=initializeApp(firebaseConfig),auth=getAuth(app),fs=getFirestore(app);
+const app=initializeApp(firebaseConfig),auth=getAuth(app),fs=initializeFirestore(app,{experimentalForceLongPolling:true});
 const q=s=>document.querySelector(s);
 const mail=t=>t.replace(/\D/g,'')+'@vendedor.reisconsultoria.app';
 const pw=c=>c.toUpperCase().replace(/[^A-Z0-9]/g,'');
