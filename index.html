@@ -411,7 +411,7 @@ function card(l){
 const mkTel=v=>{const d=v.replace(/\D/g,'').slice(0,11);return d.length<3?(d?'('+d:''):d.length<7?`(${d.slice(0,2)}) ${d.slice(2)}`:d.length<11?`(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`:`(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`};
 document.addEventListener('input',e=>{if(e.target.type==='tel')e.target.value=mkTel(e.target.value)});
 document.addEventListener('focusin',e=>{if(e.target.type==='tel'&&!e.target.placeholder)e.target.placeholder='(00) 00000-0000'});
-function profileForm(){modal(`<h2>Acesso não ativo</h2><p class="mu">Seu cadastro não foi encontrado. Fale com o consultor.</p><div class="row"><button class="btn" onclick="document.getElementById('out').click()">Sair</button></div>`)}
+function profileForm(){modal(`<h2>Acesso não ativo</h2><p class="mu">Seu cadastro não foi encontrado. Fale com o consultor.</p><p class="mu" style="word-break:break-all">UID desta conta: <b>${E(myId)}</b></p><p class="mu" style="word-break:break-all">Diagnóstico: ${E(window.__admErr||"documento admins não encontrado para este UID")}</p><div class="row"><button class="btn" onclick="document.getElementById('out').click()">Sair</button></div>`)}
 function sForm(sid){
   const v=sid?cads[sid]:{};
   modal(`<h2>${sid?'Editar':'Cadastrar'} vendedor</h2><form id="sf"><label>Nome</label><input name="n" value="${E(v.nome||'')}" required>
@@ -487,7 +487,7 @@ q('#fv').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signIn
 q('#fc').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await signInWithEmailAndPassword(auth,f.e.value.trim(),f.p.value)}catch(x){fail(x)}};
 onAuthStateChanged(auth,async u=>{
   if(!u){q('#login').classList.add('show');return}
-  let adm=false;try{adm=(await getDoc(doc(fs,'admins',u.uid))).exists()}catch(x){}
+  let adm=false;try{adm=(await getDoc(doc(fs,'admins',u.uid))).exists()}catch(x){window.__admErr=x.code||x.message}
   window.__fb={user:{id:()=>u.uid,canEdit:()=>adm,me:async()=>({name:''})},db:dbShim};
   q('#login').classList.remove('show');
   if(!q('#out')){const b=document.createElement('button');b.id='out';b.className='btn g';b.textContent='Sair';b.onclick=async()=>{await signOut(auth);location.reload()};q('header').appendChild(b)}
