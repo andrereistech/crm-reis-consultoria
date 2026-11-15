@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyCr5vuFRQSA1KtIowt0zrFvc4ppq7avq84",
-  authDomain: "reis-consultoria-e834c.firebaseapp.com",
-  projectId: "reis-consultoria-e834c",
-  storageBucket: "reis-consultoria-e834c.firebasestorage.app",
-  messagingSenderId: "689992401377",
-  appId: "1:689992401377:web:2d2a8be68393a01006d2a0"
+  apiKey: "AIzaSyA70HnfeDHfKiNNq2xrwb1XNNEk7_99mSo",
+  authDomain: "crm-consultoria-reis.firebaseapp.com",
+  projectId: "crm-consultoria-reis",
+  storageBucket: "crm-consultoria-reis.firebasestorage.app",
+  messagingSenderId: "1024053280429",
+  appId: "1:1024053280429:web:b664b88bf2308fade91024"
 };
