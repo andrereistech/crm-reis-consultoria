@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyCBq4gajHSSLmL-3eXuIKAvnQdBg7wetdE",
+  apiKey: "AIzaSyCr5vuFRQSA1KtIowt0zrFvc4ppq7avq84",
   authDomain: "reis-consultoria-e834c.firebaseapp.com",
   projectId: "reis-consultoria-e834c",
   storageBucket: "reis-consultoria-e834c.firebasestorage.app",
